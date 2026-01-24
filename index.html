@@ -63,8 +63,7 @@
 
         /* ===== IMAGE GRIDS ===== */
         .image-card,
-        .Works,
-        .prince {
+        .Works {
             display: grid;
             gap: 15px;
             max-width: 1100px;
@@ -72,20 +71,12 @@
             padding: 0 15px;
         }
 
-        /* Recent Works */
         .image-card {
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
 
-        /* My Works */
         .Works {
-            grid-template-columns: repeat(3, 1fr); /* 3 per row */
-        }
-
-        /* Services */
-        .prince {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            text-align: center;
+            grid-template-columns: repeat(3, 1fr);
         }
 
         /* ===== IMAGES ===== */
@@ -101,11 +92,36 @@
             transform: scale(1.05);
         }
 
-        /* Service captions */
-        .service-caption {
-            margin-top: 8px;
-            font-weight: bold;
-            color: #333;
+        /* ===== SERVICES SLIDER ===== */
+        .slider-container {
+            overflow-x: hidden; /* hide scrollbar for seamless auto-scroll */
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 10px;
+            cursor: grab;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 15px;
+        }
+
+        .service-slide {
+            flex: 0 0 auto;
+            width: 250px;
+            text-align: center;
+        }
+
+        .service-slide img {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-slide img:hover {
+            transform: scale(1.05);
         }
 
         /* ===== FOOTER ===== */
@@ -157,6 +173,11 @@
             .Works {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            /* Mobile slider adjustments */
+            .service-slide {
+                width: 200px; /* smaller slides for mobile */
+            }
         }
     </style>
 </head>
@@ -184,7 +205,7 @@
     <div class="image-card">
         <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png" alt="Clamo Investment"></a>
         <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg" alt="Dalie Perfumes"></a>
-        <a href="PHOTOS/wemo.jpg" target="_blank"><img src="PHOTOS/bb.jpg" alt="Birthday Design"></a>
+        <a href="PHOTOS/bb.jpg" target="_blank"><img src="PHOTOS/bb.jpg" alt="Birthday Design"></a>
         <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png" alt="Song Cover"></a>
     </div>
 
@@ -213,20 +234,43 @@
         <a href="PHOTOS/YCX.jpg" target="_blank"><img src="PHOTOS/YCX.jpg" alt="YC Graphics"></a>
     </div>
 
-    <!-- ===== SERVICES ===== -->
+    <!-- ===== SERVICES SLIDER ===== -->
     <h2>Services and Pricing</h2>
-    <div class="prince">
-        <div>
-            <img src="PHOTOS/LT.png" alt="Logo Design">
-            <p class="service-caption">LOGO DESIGNING MK10,000</p>
-        </div>
-        <div>
-            <img src="PHOTOS/max2.jpg" alt="Flyer Design">
-            <p class="service-caption">FLYERS & POSTER DESIGNING MK5,000</p>
-        </div>
-        <div>
-            <img src="PHOTOS/FINAL.jpg" alt="Social Media Ads">
-            <p class="service-caption">SOCIAL MEDIA POSTERS MK8,000</p>
+    <div class="slider-container" id="slider">
+        <div class="slider-track" id="slider-track">
+
+            <!-- original slides -->
+            <div class="service-slide">
+                <img src="PHOTOS/yc.jpg" alt="Logo Design">
+                <p class="service-caption">LOGO DESIGNING MK10,000</p>
+            </div>
+
+            <div class="service-slide">
+                <img src="PHOTOS/DEBATE.jpg" alt="Flyers & Posters">
+                <p class="service-caption">FLYERS & POSTER DESIGNING MK5,000</p>
+            </div>
+
+            <div class="service-slide">
+                <img src="PHOTOS/mafuta.jpg" alt="Social Media Graphics">
+                <p class="service-caption">SOCIAL MEDIA POSTERS MK8,000</p>
+            </div>
+
+            <!-- duplicate slides for seamless looping -->
+            <div class="service-slide">
+                <img src="PHOTOS/yc.jpg" alt="Logo Design">
+                <p class="service-caption">LOGO DESIGNING MK10,000</p>
+            </div>
+
+            <div class="service-slide">
+                <img src="PHOTOS/DEBATE.jpg" alt="Flyers & Posters">
+                <p class="service-caption">FLYERS & POSTER DESIGNING MK5,000</p>
+            </div>
+
+            <div class="service-slide">
+                <img src="PHOTOS/mafuta.jpg" alt="Social Media Graphics">
+                <p class="service-caption">SOCIAL MEDIA POSTERS MK8,000</p>
+            </div>
+
         </div>
     </div>
 
@@ -242,5 +286,32 @@
         <p>&copy; YC GRAPHICS 2026. All rights reserved.</p>
     </div>
 
+    <!-- ===== AUTO-SLIDE SCRIPT ===== -->
+    <script>
+        const sliderTrack = document.getElementById('slider-track');
+        const slider = document.getElementById('slider');
+
+        // Duplicate content for seamless infinite loop
+        sliderTrack.innerHTML += sliderTrack.innerHTML;
+
+        let scrollSpeed = 1; // pixels per frame
+        let x = 0;
+
+        function autoScroll() {
+            x += scrollSpeed;
+            if (x >= sliderTrack.scrollWidth / 2) { // reset after half content
+                x = 0;
+            }
+            slider.scrollLeft = x;
+            requestAnimationFrame(autoScroll);
+        }
+
+        autoScroll();
+
+        // Pause on hover
+        slider.addEventListener('mouseenter', () => scrollSpeed = 0);
+        slider.addEventListener('mouseleave', () => scrollSpeed = 1);
+    </script>
+
 </body>
-</html>
+    </html>
