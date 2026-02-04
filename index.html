@@ -1,310 +1,290 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>YC GRAPHICS PORTFOLIO</title>  <style>  
-    /* ===== RESET ===== */  
-    * {  
-        margin: 0;  
-        padding: 0;  
-        box-sizing: border-box;  
-    }  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YC GRAPHICS PORTFOLIO</title>
 
-    body {  
-        font-family: Arial, Helvetica, sans-serif;  
-        background: #f7f7f7;  
-        color: #333;  
-        line-height: 1.6;  
-    }  
+<style>
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    /* ===== HEADER ===== */  
-    .header {  
-        display: flex;  
-        align-items: center;  
-        justify-content: space-between;  
-        background: linear-gradient(135deg, #ff9800, #ff5722);  
-        padding: 15px 20px;  
-        flex-wrap: wrap;  
-    }  
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f7f7f7;
+    color:#333;
+    line-height:1.6;
+}
 
-    .header img {  
-        width: 60px;  
-    }  
+/* ===== HEADER ===== */
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:linear-gradient(135deg,#ff9800,#ff5722);
+    padding:15px 20px;
+    flex-wrap:wrap;
+}
 
-    .header a {  
-        color: white;  
-        text-decoration: none;  
-        margin-left: 15px;  
-        font-weight: bold;  
-    }  
+.header img{
+    width:60px;
+}
 
-    .header a:hover {  
-        text-decoration: underline;  
-    }  
+.header a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-weight:bold;
+}
 
-    /* ===== TEXT ===== */  
-    h1, h2 {  
-        text-align: center;  
-        margin: 20px 0 10px;  
-    }  
+.header a:hover{
+    text-decoration:underline;
+}
 
-    p {  
-        text-align: center;  
-        margin-bottom: 10px;  
-    }  
+/* ===== TEXT ===== */
+h1,h2{
+    text-align:center;
+    margin:20px 0 10px;
+}
 
-    hr {  
-        width: 80%;  
-        margin: 20px auto;  
-    }  
+p{
+    text-align:center;
+    margin-bottom:10px;
+}
 
-    /* ===== IMAGE GRIDS ===== */  
-    .image-card,  
-    .Works {  
-        display: grid;  
-        gap: 15px;  
-        max-width: 1100px;  
-        margin: 20px auto;  
-        padding: 0 15px;  
-    }  
+hr{
+    width:80%;
+    margin:20px auto;
+}
 
-    .image-card {  
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  
-    }  
+/* ===== IMAGE GRIDS ===== */
+.image-card,
+.Works{
+    display:grid;
+    gap:15px;
+    max-width:1100px;
+    margin:20px auto;
+    padding:0 15px;
+}
 
-    .Works {  
-        grid-template-columns: repeat(3, 1fr);  
-    }  
+.image-card{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
 
-    /* ===== IMAGES ===== */  
-    img {  
-        width: 100%;  
-        height: auto;  
-        border-radius: 8px;  
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
-        transition: transform 0.3s ease;  
-    }  
+.Works{
+    grid-template-columns:repeat(3,1fr);
+}
 
-    img:hover {  
-        transform: scale(1.05);  
-    }  
+/* ===== IMAGES ===== */
+img{
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:transform 0.3s ease;
+}
 
-    /* ===== SERVICES SLIDER ===== */  
-    .slider-container {  
-        overflow-x: hidden; /* hide scrollbar for seamless auto-scroll */  
-        max-width: 1100px;  
-        margin: 30px auto;  
-        padding: 0 10px;  
-        cursor: grab;  
-    }  
+img:hover{
+    transform:scale(1.05);
+}
 
-    .slider-track {  
-        display: flex;  
-        gap: 15px;  
-    }  
+/* ===== SERVICES SLIDER ===== */
+.slider-container{
+    overflow-x:hidden;
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 10px;
+    cursor:grab;
+}
 
-    .service-slide {  
-        flex: 0 0 auto;  
-        width: 250px;  
-        text-align: center;  
-    }  
+.slider-track{
+    display:flex;
+    gap:15px;
+}
 
-    .service-slide img {  
-        border-radius: 8px;  
-        width: 100%;  
-        height: auto;  
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
-        transition: transform 0.3s ease;  
-    }  
+.service-slide{
+    flex:0 0 auto;
+    width:250px;
+    text-align:center;
+}
 
-    .service-slide img:hover {  
-        transform: scale(1.05);  
-    }  
+.service-slide img{
+    border-radius:8px;
+    width:100%;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
 
-    /* ===== FOOTER ===== */  
-    .footer {  
-        background: #222;  
-        color: white;  
-        text-align: center;  
-        padding: 25px 10px;  
-        margin-top: 40px;  
-    }  
+/* ===== FOOTER ===== */
+.footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:25px 10px;
+    margin-top:40px;
+}
 
-    .footer a {  
-        color: #ff9800;  
-        text-decoration: none;  
-        margin: 10px;  
-        display: inline-block;  
-        font-weight: bold;  
-    }  
+.footer a{
+    color:#ff9800;
+    text-decoration:none;
+    margin:10px;
+    display:inline-block;
+    font-weight:bold;
+}
 
-    .footer a:hover {  
-        text-decoration: underline;  
-    }  
+.footer a:hover{
+    text-decoration:underline;
+}
 
-    .footer p {  
-        margin-top: 15px;  
-        font-size: 14px;  
-    }  
+.footer p{
+    margin-top:15px;
+    font-size:14px;
+}
 
-    /* ===== MOBILE ===== */  
-    @media (max-width: 600px) {  
-        .header {  
-            justify-content: center;  
-            text-align: center;  
-        }  
+/* ===== MOBILE ===== */
+@media (max-width:600px){
+    .header{
+        justify-content:center;
+        text-align:center;
+    }
 
-        .header a {  
-            margin: 10px;  
-        }  
+    .header a{
+        margin:10px;
+    }
 
-        h1 {  
-            font-size: 24px;  
-        }  
+    h1{font-size:24px;}
+    h2{font-size:20px;}
 
-        h2 {  
-            font-size: 20px;  
-        }  
+    .Works{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-        /* My Works mobile: 2 per row */  
-        .Works {  
-            grid-template-columns: repeat(2, 1fr);  
-        }  
-
-        /* Mobile slider adjustments */  
-        .service-slide {  
-            width: 200px; /* smaller slides for mobile */  
-        }  
-    }  
+    .service-slide{
+        width:200px;
+    }
+}
 </style>
+</head>
 
-</head>  <body>  <!-- ===== HEADER ===== -->  
-<div class="header">  
-    <img src="PHOTOS/yc.jpg" alt="YC Logo">  
-    <div>  
-        <a href="index.html">Home</a>  
-        <a href="Services.html">Services</a>  
-        <a href="Contact.html">Contact</a>  
-    </div>  
-</div>  
+<body>
 
-<!-- ===== INTRO ===== -->  
-<h1>Welcome to YC Graphics</h1>  
-<hr>  
-<p>Freelance Graphic Designer – Logos, Flyers & Social Media Designs</p>  
-<hr>  
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <img src="PHOTOS/yc.jpg" alt="YC Logo">
+    <div>
+        <a href="index.html">Home</a>
+        <a href="Services.html">Services</a>
+        <a href="Contact.html">Contact</a>
+    </div>
+</div>
 
-<!-- ===== RECENT WORKS ===== -->  
-<h2>Recent Works</h2>  
-<div class="image-card">  
-    <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png" alt="Clamo Investment"></a>  
-    <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg" alt="Dalie Perfumes"></a>  
-    <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png" alt="Song Cover"></a>  
-</div>  
+<!-- ===== INTRO ===== -->
+<h1>Welcome to YC Graphics</h1>
+<hr>
+<p>Freelance Graphic Designer – Logos, Flyers & Social Media Designs</p>
+<hr>
 
-<hr>  
+<!-- ===== RECENT WORKS ===== -->
+<h2>Recent Works</h2>
+<div class="image-card">
+    <a href="PHOTOS/clamo.png" target="_blank">
+        <img src="PHOTOS/clamo.png" alt="Clamo Investment">
+    </a>
 
-<!-- ===== MY WORKS ===== -->  
-<h2>My Works</h2>  
-<div class="Works">  
-    <a href="PHOTOS/kl.jpg" target="_blank"><img src="PHOTOS/kl.jpg" alt="Design 1"></a>  
-    <a href="PHOTOS/Cg.jpg" target="_blank"><img src="PHOTOS/Cg.jpg" alt="Design 2"></a>  
-    <a href="PHOTOS/kl1.jpg" target="_blank"><img src="PHOTOS/kl1.jpg" alt="Design 3"></a>  
-    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt="Logo"></a>  
-    <a href="PHOTOS/bb.jpg" target="_blank"><img src="PHOTOS/bb.jpg" alt="Birthday Design"></a>  
-    <a href="PHOTOS/bu2.jpg" target="_blank"><img src="PHOTOS/bu2.jpg" alt="Business Design"></a>  
-    <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png" alt="Clamo Design"></a>  
-    <a href="PHOTOS/DEBATE.jpg" target="_blank"><img src="PHOTOS/DEBATE.jpg" alt="Debate Poster"></a>  
-    <a href="PHOTOS/FINAL.jpg" target="_blank"><img src="PHOTOS/FINAL.jpg" alt="Final Artwork"></a>  
-    <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png" alt="Music Cover"></a>  
-    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt="Logo Design"></a>  
-    <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg" alt="Perfume Design"></a>  
-    <a href="PHOTOS/max2.jpg" target="_blank"><img src="PHOTOS/max2.jpg" alt="Flyer Design"></a>  
-    <a href="PHOTOS/miiii.jpg" target="_blank"><img src="PHOTOS/miiii.jpg" alt="Social Media Design"></a>  
-    <a href="PHOTOS/NODAY.jpg" target="_blank"><img src="PHOTOS/NODAY.jpg" alt="Poster Design"></a>  
-    <a href="PHOTOS/P1.jpg" target="_blank"><img src="PHOTOS/P1.jpg" alt="Promotional Design"></a>  
-    <a href="PHOTOS/wemo.png" target="_blank"><img src="PHOTOS/wemo.png" alt="Brand Design"></a>  
-    <a href="PHOTOS/YCX.jpg" target="_blank"><img src="PHOTOS/YCX.jpg" alt="YC Graphics"></a>  
-</div>  
+    <a href="PHOTOS/valentine.png" target="_blank">
+        <img src="PHOTOS/valentine.png" alt="Valentine Design">
+    </a>
 
-<!-- ===== SERVICES SLIDER ===== -->  
-<h2>Services and Pricing</h2>  
-<div class="slider-container" id="slider">  
-    <div class="slider-track" id="slider-track">  
+    <a href="PHOTOS/YC vale.jpg" target="_blank">
+        <img src="PHOTOS/YC vale.jpg" alt="YC vale">
+    </a>
+</div>
 
-        <!-- original slides -->  
-        <div class="service-slide">  
-            <img src="PHOTOS/yc.jpg" alt="Logo Design">  
-            <p class="service-caption">LOGO DESIGNING MK10,000</p>  
-        </div>  
+<hr>
 
-        <div class="service-slide">  
-            <img src="PHOTOS/DEBATE.jpg" alt="Flyers & Posters">  
-            <p class="service-caption">FLYERS & POSTER DESIGNING MK5,000</p>  
-        </div>  
+<!-- ===== MY WORKS ===== -->
+<h2>My Works</h2>
+<div class="Works">
+    <a href="PHOTOS/kl.jpg" target="_blank"><img src="PHOTOS/kl.jpg" alt=""></a>
+    <a href="PHOTOS/Cg.jpg" target="_blank"><img src="PHOTOS/Cg.jpg" alt=""></a>
+    <a href="PHOTOS/kl1.jpg" target="_blank"><img src="PHOTOS/kl1.jpg" alt=""></a>
+    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt=""></a>
+    <a href="PHOTOS/bb.jpg" target="_blank"><img src="PHOTOS/bb.jpg" alt=""></a>
+    <a href="PHOTOS/bu2.jpg" target="_blank"><img src="PHOTOS/bu2.jpg" alt=""></a>
+    <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png" alt=""></a>
+    <a href="PHOTOS/DEBATE.jpg" target="_blank"><img src="PHOTOS/DEBATE.jpg" alt=""></a>
+    <a href="PHOTOS/FINAL.jpg" target="_blank"><img src="PHOTOS/FINAL.jpg" alt=""></a>
+    <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png" alt=""></a>
+    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt=""></a>
+    <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg" alt=""></a>
+    <a href="PHOTOS/max2.jpg" target="_blank"><img src="PHOTOS/max2.jpg" alt=""></a>
+    <a href="PHOTOS/miiii.jpg" target="_blank"><img src="PHOTOS/miiii.jpg" alt=""></a>
+    <a href="PHOTOS/NODAY.jpg" target="_blank"><img src="PHOTOS/NODAY.jpg" alt=""></a>
+    <a href="PHOTOS/P1.jpg" target="_blank"><img src="PHOTOS/P1.jpg" alt=""></a>
+    <a href="PHOTOS/wemo.png" target="_blank"><img src="PHOTOS/wemo.png" alt=""></a>
+    <a href="PHOTOS/YCX.jpg" target="_blank"><img src="PHOTOS/YCX.jpg" alt=""></a>
 
-        <div class="service-slide">  
-            <img src="PHOTOS/mafuta.jpg" alt="Social Media Graphics">  
-            <p class="service-caption">SOCIAL MEDIA POSTERS MK8,000</p>  
-        </div>  
+  
+    <a href="PHOTOS/valentine.png" target="_blank"><img src="PHOTOS/valentine.png" alt=""></a>
+    <a href="PHOTOS/YC vale.jpg" target="_blank"><img src="PHOTOS/YC vale.jpg" alt=""></a>
+</div>
 
-        <!-- duplicate slides for seamless looping -->  
-        <div class="service-slide">  
-            <img src="PHOTOS/yc.jpg" alt="Logo Design">  
-            <p class="service-caption">LOGO DESIGNING MK10,000</p>  
-        </div>  
+<!-- ===== SERVICES SLIDER ===== -->
+<h2>Services and Pricing</h2>
+<div class="slider-container" id="slider">
+    <div class="slider-track" id="slider-track">
+        <div class="service-slide">
+            <img src="PHOTOS/yc.jpg">
+            <p>LOGO DESIGNING MK10,000</p>
+        </div>
 
-        <div class="service-slide">  
-            <img src="PHOTOS/DEBATE.jpg" alt="Flyers & Posters">  
-            <p class="service-caption">FLYERS & POSTER DESIGNING MK5,000</p>  
-        </div>  
+        <div class="service-slide">
+            <img src="PHOTOS/DEBATE.jpg">
+            <p>FLYERS & POSTER DESIGNING MK5,000</p>
+        </div>
 
-        <div class="service-slide">  
-            <img src="PHOTOS/mafuta.jpg" alt="Social Media Graphics">  
-            <p class="service-caption">SOCIAL MEDIA POSTERS MK8,000</p>  
-        </div>  
+        <div class="service-slide">
+            <img src="PHOTOS/mafuta.jpg">
+            <p>SOCIAL MEDIA POSTERS MK8,000</p>
+        </div>
+    </div>
+</div>
 
-    </div>  
-</div>  
+<hr>
 
-<hr>  
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    <h5>CONTACT US</h5>
+    <hr>
+    <a href="https://wa.me/265890277409" target="_blank">WhatsApp</a>
+    <a href="mailto:yafetichidzaye72@gmail.com">Email</a>
+    <a href="https://www.facebook.com/profile.php?id=100095165181867" target="_blank">Facebook</a>
+    <p>&copy; YC GRAPHICS 2026. All rights reserved.</p>
+</div>
 
-<!-- ===== FOOTER ===== -->  
-<div class="footer">  
-    <h5>CONTACT US</h5>  
-    <hr>  
-    <a href="https://wa.me/265890277409" target="_blank">WhatsApp</a>  
-    <a href="mailto:yafetichidzaye72@gmail.com">Email</a>  
-    <a href="https://www.facebook.com/profile.php?id=100095165181867" target="_blank">Facebook</a>  
-    <p>&copy; YC GRAPHICS 2026. All rights reserved.</p>  
-</div>  
+<script>
+const sliderTrack=document.getElementById('slider-track');
+const slider=document.getElementById('slider');
 
-<!-- ===== AUTO-SLIDE SCRIPT ===== -->  
-<script>  
-    const sliderTrack = document.getElementById('slider-track');  
-    const slider = document.getElementById('slider');  
+sliderTrack.innerHTML+=sliderTrack.innerHTML;
 
-    // Duplicate content for seamless infinite loop  
-    sliderTrack.innerHTML += sliderTrack.innerHTML;  
+let x=0;
+let speed=1;
 
-    let scrollSpeed = 1; // pixels per frame  
-    let x = 0;  
+function autoScroll(){
+    x+=speed;
+    if(x>=sliderTrack.scrollWidth/2){x=0;}
+    slider.scrollLeft=x;
+    requestAnimationFrame(autoScroll);
+}
+autoScroll();
 
-    function autoScroll() {  
-        x += scrollSpeed;  
-        if (x >= sliderTrack.scrollWidth / 2) { // reset after half content  
-            x = 0;  
-        }  
-        slider.scrollLeft = x;  
-        requestAnimationFrame(autoScroll);  
-    }  
-
-    autoScroll();  
-
-    // Pause on hover  
-    slider.addEventListener('mouseenter', () => scrollSpeed = 0);  
-    slider.addEventListener('mouseleave', () => scrollSpeed = 1);  
+slider.addEventListener('mouseenter',()=>speed=0);
+slider.addEventListener('mouseleave',()=>speed=1);
 </script>
 
-</body>  
+</body>
 </html>
