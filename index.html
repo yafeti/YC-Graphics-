@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YC GRAPHICS PORTFOLIO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YC GRAPHICS PORTFOLIO</title>
 
 <style>
-/* ===== RESET ===== */
 *{
     margin:0;
     padding:0;
@@ -43,6 +42,51 @@ body{
 
 .header a:hover{
     text-decoration:underline;
+}
+
+/* ===== HERO SLIDER ===== */
+.hero-slider{
+    position:relative;
+    width:100%;
+    height:420px;
+    overflow:hidden;
+}
+
+.hero-slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+}
+
+.hero-slide.active{
+    opacity:1;
+}
+
+.hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:0;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-overlay h1{
+    font-size:48px;
+    padding:15px 35px;
+    border-radius:10px;
+    background:rgba(0,0,0,0.4);
 }
 
 /* ===== TEXT ===== */
@@ -98,7 +142,6 @@ img:hover{
     max-width:1100px;
     margin:30px auto;
     padding:0 10px;
-    cursor:grab;
 }
 
 .slider-track{
@@ -114,8 +157,6 @@ img:hover{
 
 .service-slide img{
     border-radius:8px;
-    width:100%;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* ===== FOOTER ===== */
@@ -155,6 +196,10 @@ img:hover{
         margin:10px;
     }
 
+    .hero-overlay h1{
+        font-size:26px;
+    }
+
     h1{font-size:24px;}
     h2{font-size:20px;}
 
@@ -181,61 +226,69 @@ img:hover{
     </div>
 </div>
 
+
 <!-- ===== INTRO ===== -->
 <h1>Welcome to YC Graphics</h1>
 <hr>
 <p>Freelance Graphic Designer – Logos, Flyers & Social Media Designs</p>
 <hr>
 
-<!-- ===== RECENT WORKS ===== -->
-<h2>Recent Works</h2>
-<div class="image-card">
-    <a href="PHOTOS/clamo.png" target="_blank">
-        <img src="PHOTOS/clamo.png" alt="Clamo Investment">
-    </a>
+<!-- ===== HERO SLIDER ===== -->
+    <h2>Recent Works</h2>
 
-    <a href="PHOTOS/valentine.png" target="_blank">
-        <img src="PHOTOS/valentine.png" alt="Valentine Design">
-    </a>
+<div class="hero-slider">
+    <div class="hero-slide active">
+        <img src="PHOTOS/rhod_095314.jpg">
+        <div class="hero-overlay">
+            <h1>BOOK US NOW!</h1>
+        </div>
+    </div>
 
-    <a href="PHOTOS/image-22.jpg" target="_blank">
-        <img src="PHOTOS/image-22.jpg" alt="Latest Work">
-    </a>
+    <div class="hero-slide">
+        <img src="PHOTOS/lands call.jpg">
+        <div class="hero-overlay">
+            <h1>BOOK US NOW!</h1>
+        </div>
+    </div>
+
+    <div class="hero-slide">
+        <img src="PHOTOS/image-22.jpg">
+        <div class="hero-overlay">
+            <h1>BOOK US NOW!</h1>
+        </div>
+    </div>
 </div>
 
-<hr>
 
 <!-- ===== MY WORKS ===== -->
 <h2>My Works</h2>
 <div class="Works">
-    <a href="PHOTOS/kl.jpg" target="_blank"><img src="PHOTOS/kl.jpg" alt=""></a>
-    <a href="PHOTOS/Cg.jpg" target="_blank"><img src="PHOTOS/Cg.jpg" alt=""></a>
-    <a href="PHOTOS/kl1.jpg" target="_blank"><img src="PHOTOS/kl1.jpg" alt=""></a>
-    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt=""></a>
-    <a href="PHOTOS/bb.jpg" target="_blank"><img src="PHOTOS/bb.jpg" alt=""></a>
-    <a href="PHOTOS/bu2.jpg" target="_blank"><img src="PHOTOS/bu2.jpg" alt=""></a>
-    <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png" alt=""></a>
-    <a href="PHOTOS/DEBATE.jpg" target="_blank"><img src="PHOTOS/DEBATE.jpg" alt=""></a>
-    <a href="PHOTOS/FINAL.jpg" target="_blank"><img src="PHOTOS/FINAL.jpg" alt=""></a>
-    <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png" alt=""></a>
-    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png" alt=""></a>
-    <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg" alt=""></a>
-    <a href="PHOTOS/max2.jpg" target="_blank"><img src="PHOTOS/max2.jpg" alt=""></a>
-    <a href="PHOTOS/miiii.jpg" target="_blank"><img src="PHOTOS/miiii.jpg" alt=""></a>
-    <a href="PHOTOS/NODAY.jpg" target="_blank"><img src="PHOTOS/NODAY.jpg" alt=""></a>
-    <a href="PHOTOS/P1.jpg" target="_blank"><img src="PHOTOS/P1.jpg" alt=""></a>
-    <a href="PHOTOS/wemo.png" target="_blank"><img src="PHOTOS/wemo.png" alt=""></a>
-    <a href="PHOTOS/YCX.jpg" target="_blank"><img src="PHOTOS/YCX.jpg" alt=""></a>
-    <a href="PHOTOS/valentine.png" target="_blank"><img src="PHOTOS/valentine.png" alt=""></a>
-    <a href="PHOTOS/YC vale.jpg" target="_blank"><img src="PHOTOS/YC vale.jpg" alt=""></a>
-
-    <!-- Added image -->
-    <a href="PHOTOS/image-22.jpg" target="_blank">
-        <img src="PHOTOS/image-22.jpg" alt="">
-    </a>
+    <a href="PHOTOS/kl.jpg" target="_blank"><img src="PHOTOS/kl.jpg"></a>
+    <a href="PHOTOS/Cg.jpg" target="_blank"><img src="PHOTOS/Cg.jpg"></a>
+    <a href="PHOTOS/kl1.jpg" target="_blank"><img src="PHOTOS/kl1.jpg"></a>
+    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png"></a>
+    <a href="PHOTOS/bb.jpg" target="_blank"><img src="PHOTOS/bb.jpg"></a>
+    <a href="PHOTOS/bu2.jpg" target="_blank"><img src="PHOTOS/bu2.jpg"></a>
+    <a href="PHOTOS/clamo.png" target="_blank"><img src="PHOTOS/clamo.png"></a>
+    <a href="PHOTOS/DEBATE.jpg" target="_blank"><img src="PHOTOS/DEBATE.jpg"></a>
+    <a href="PHOTOS/FINAL.jpg" target="_blank"><img src="PHOTOS/FINAL.jpg"></a>
+    <a href="PHOTOS/g nation.png" target="_blank"><img src="PHOTOS/g nation.png"></a>
+    <a href="PHOTOS/LT.png" target="_blank"><img src="PHOTOS/LT.png"></a>
+    <a href="PHOTOS/mafuta.jpg" target="_blank"><img src="PHOTOS/mafuta.jpg"></a>
+    <a href="PHOTOS/max2.jpg" target="_blank"><img src="PHOTOS/max2.jpg"></a>
+    <a href="PHOTOS/miiii.jpg" target="_blank"><img src="PHOTOS/miiii.jpg"></a>
+    <a href="PHOTOS/NODAY.jpg" target="_blank"><img src="PHOTOS/NODAY.jpg"></a>
+    <a href="PHOTOS/P1.jpg" target="_blank"><img src="PHOTOS/P1.jpg"></a>
+    <a href="PHOTOS/wemo.png" target="_blank"><img src="PHOTOS/wemo.png"></a>
+    <a href="PHOTOS/YCX.jpg" target="_blank"><img src="PHOTOS/YCX.jpg"></a>
+    <a href="PHOTOS/valentine.png" target="_blank"><img src="PHOTOS/valentine.png"></a>
+    <a href="PHOTOS/YC vale.jpg" target="_blank"><img src="PHOTOS/YC vale.jpg"></a>
+    <a href="PHOTOS/image-22.jpg" target="_blank"><img src="PHOTOS/image-22.jpg"></a>
+    <a href="PHOTOS/rhod_095314.jpg" target="_blank"><img src="PHOTOS/rhod_095314.jpg"></a>
+    <a href="PHOTOS/lands call.jpg" target="_blank"><img src="PHOTOS/lands call.jpg"></a>
 </div>
 
-<!-- ===== SERVICES SLIDER ===== -->
+<!-- ===== SERVICES ===== -->
 <h2>Services and Pricing</h2>
 <div class="slider-container" id="slider">
     <div class="slider-track" id="slider-track">
@@ -243,12 +296,10 @@ img:hover{
             <img src="PHOTOS/yc.jpg">
             <p>LOGO DESIGNING MK10,000</p>
         </div>
-
         <div class="service-slide">
             <img src="PHOTOS/DEBATE.jpg">
             <p>FLYERS & POSTER DESIGNING MK5,000</p>
         </div>
-
         <div class="service-slide">
             <img src="PHOTOS/mafuta.jpg">
             <p>SOCIAL MEDIA POSTERS MK8,000</p>
@@ -269,14 +320,23 @@ img:hover{
 </div>
 
 <script>
+/* HERO SLIDER */
+let heroIndex = 0;
+const heroSlides = document.querySelectorAll('.hero-slide');
+
+setInterval(() => {
+    heroSlides[heroIndex].classList.remove('active');
+    heroIndex = (heroIndex + 1) % heroSlides.length;
+    heroSlides[heroIndex].classList.add('active');
+}, 4000);
+
+/* SERVICES AUTO SCROLL */
 const sliderTrack=document.getElementById('slider-track');
 const slider=document.getElementById('slider');
-
 sliderTrack.innerHTML+=sliderTrack.innerHTML;
 
 let x=0;
 let speed=1;
-
 function autoScroll(){
     x+=speed;
     if(x>=sliderTrack.scrollWidth/2){x=0;}
@@ -284,10 +344,7 @@ function autoScroll(){
     requestAnimationFrame(autoScroll);
 }
 autoScroll();
-
-slider.addEventListener('mouseenter',()=>speed=0);
-slider.addEventListener('mouseleave',()=>speed=1);
 </script>
 
 </body>
-</html>
+        </html>
