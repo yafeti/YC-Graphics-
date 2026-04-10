@@ -12,10 +12,7 @@ body{font-family:Arial, Helvetica, sans-serif;background:#f7f7f7;color:#333;line
 /* LOADER */
 #loader{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:#000;
 color:#ff9800;
 display:flex;
@@ -45,9 +42,15 @@ color:white;
 text-decoration:none;
 margin-left:15px;
 font-weight:bold;
+padding:6px 10px;
+border-radius:6px;
+transition:0.3s;
 }
-.nav-links a:hover{text-decoration:underline;}
+.nav-links a:hover{
+background:rgba(0,0,0,0.2);
+}
 
+/* MOBILE MENU */
 .menu-toggle{
 display:none;
 font-size:28px;
@@ -55,9 +58,7 @@ color:white;
 cursor:pointer;
 }
 
-/* MOBILE */
 @media (max-width:600px){
-.header{justify-content:space-between;}
 .menu-toggle{display:block;}
 
 .nav-links{
@@ -70,8 +71,8 @@ margin-top:10px;
 }
 
 .nav-links a{
-padding:12px;
 margin:0;
+padding:12px;
 display:block;
 }
 
@@ -80,7 +81,6 @@ display:block;
 .hero-overlay h1{font-size:26px;}
 h1{font-size:24px;}
 h2{font-size:20px;}
-.service-slide{width:200px;}
 }
 
 /* HERO */
@@ -119,6 +119,11 @@ padding:30px 15px;
 margin:30px 0;
 }
 
+.categories h2{
+color:white;
+margin-bottom:15px;
+}
+
 .categories ul{
 list-style:none;
 display:flex;
@@ -132,15 +137,15 @@ background:rgba(0,0,0,0.2);
 padding:12px 20px;
 border-radius:25px;
 font-weight:bold;
-
-/* REMOVE LINK STYLE */
 color:white;
 text-decoration:none;
+transition:0.3s;
 display:inline-block;
 }
 
 .categories li a:hover{
-background:rgba(0,0,0,0.35); /* subtle hover only */
+background:rgba(0,0,0,0.35);
+transform:scale(1.05);
 }
 
 /* SERVICES */
@@ -180,20 +185,21 @@ font-weight:bold;
 
 <!-- LOADER -->
 <div id="loader">
-    <h1 id="loading-text"></h1>
+<h1 id="loading-text"></h1>
 </div>
 
 <!-- HEADER -->
 <div class="header">
-    <img src="PHOTOS/yc.jpg" alt="YC Logo">
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+<img src="PHOTOS/yc.jpg" alt="YC Logo">
 
-    <div class="nav-links" id="nav-links">
-        <a href="index.html">Home</a>
-        <a href="Projects.html">Projects</a>
-        <a href="Services.html">Services</a>
-        <a href="Contact.html">Contact</a>
-    </div>
+<div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+<div class="nav-links" id="nav-links">
+<a href="index.html">Home</a>
+<a href="Projects.html">Projects</a>
+<a href="Services.html">Services</a>
+<a href="Contact.html">Contact</a>
+</div>
 </div>
 
 <h1>Welcome to YC Graphics</h1>
@@ -204,142 +210,111 @@ font-weight:bold;
 <h2>Recent Works</h2>
 <div class="hero-slider" id="hero-slider"></div>
 
-<!-- UPDATED LINKS SECTION -->
+<!-- CATEGORY LINKS -->
 <div class="categories">
-    <h2>What We Design</h2>
-    <ul>
-        <li><a href="#">Event Posters</a></li>
-        <li><a href="">Song Artworks</a></li>
-        <li><a href="#">Logo Designing</a></li>
-        <li><a href="#">Business Cards</a></li>
-        <li><a href="#">Website Development</a></li>
-    </ul>
+<h2>What We Design</h2>
+<ul>
+<li><a href="gallery.html?folder=Events">Event Posters</a></li>
+<li><a href="gallery.html?folder=Song artworks">Song Artworks</a></li>
+<li><a href="gallery.html?folder=Logos">Logo Designing</a></li>
+<li><a href="gallery.html?folder=Business">Business Cards</a></li>
+<li><a href="gallery.html?folder=Websites">Website Development</a></li>
+</ul>
 </div>
 
 <h2>Services and Pricing</h2>
-<div class="slider-container" id="slider">
-    <div class="slider-track" id="slider-track">
-        <div class="service-slide">
-            <img src="PHOTOS/C1.jpg">
-            <p>LOGO DESIGNING MK12,000</p>
-        </div>
-        <div class="service-slide">
-            <img src="PHOTOS/DEBATE.jpg">
-            <p>FLYERS & POSTER DESIGNING MK7,000</p>
-        </div>
-        <div class="service-slide">
-            <img src="PHOTOS/mafuta.jpg">
-            <p>SOCIAL MEDIA POSTERS MK10,000</p>
-        </div>
-    </div>
+<div class="slider-container">
+<div class="slider-track" id="slider-track">
+<div class="service-slide">
+<img src="PHOTOS/C1.jpg">
+<p>LOGO DESIGNING MK12,000</p>
+</div>
+<div class="service-slide">
+<img src="PHOTOS/DEBATE.jpg">
+<p>FLYERS & POSTER DESIGNING MK7,000</p>
+</div>
+<div class="service-slide">
+<img src="PHOTOS/mafuta.jpg">
+<p>SOCIAL MEDIA POSTERS MK10,000</p>
+</div>
+</div>
 </div>
 
 <hr>
 
 <div class="footer">
-    <h5>CONTACT US</h5>
-    <hr>
-    <a href="https://wa.me/265890277409" target="_blank">WhatsApp</a>
-    <a href="mailto:yafetichidzaye72@gmail.com">Email</a>
-    <a href="https://www.facebook.com/profile.php?id=100095165181867" target="_blank">Facebook</a>
-    <p>&copy; YC GRAPHICS 2026. All rights reserved.</p>
+<h5>CONTACT US</h5>
+<hr>
+<a href="https://wa.me/265890277409">WhatsApp</a>
+<a href="mailto:yafetichidzaye72@gmail.com">Email</a>
+<a href="https://www.facebook.com/profile.php?id=100095165181867">Facebook</a>
+<p>&copy; YC GRAPHICS 2026. All rights reserved.</p>
 </div>
 
 <script>
-/* LOADING */
-const text = "YC GRAPHICS";
-const loadingText = document.getElementById("loading-text");
-let index = 0;
 
-function typeEffect(){
-    if(index < text.length){
-        loadingText.innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeEffect, 120);
-    } else {
-        setTimeout(()=>{
-            document.getElementById("loader").style.display = "none";
-        }, 800);
-    }
+/* LOADER */
+const text="YC GRAPHICS";
+let i=0;
+const loaderText=document.getElementById("loading-text");
+
+function type(){
+if(i<text.length){
+loaderText.innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,120);
+}else{
+setTimeout(()=>document.getElementById("loader").style.display="none",800);
 }
-window.onload = typeEffect;
+}
+window.onload=type;
 
 /* MENU */
-const toggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
+const toggle=document.getElementById("menu-toggle");
+const navLinks=document.getElementById("nav-links");
+toggle.onclick=()=>navLinks.classList.toggle("active");
 
-toggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+/* HERO SLIDER */
+const username="yafeti";
+const repo="YC-Graphics-";
+const folder="PHOTOS";
+
+async function fetchImages(){
+try{
+const res=await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`);
+const files=await res.json();
+const images=files.filter(f=>f.type==="file");
+
+const hero=document.getElementById("hero-slider");
+
+images.slice(0,3).forEach((file,index)=>{
+const div=document.createElement("div");
+div.className="hero-slide";
+if(index===0) div.classList.add("active");
+
+div.innerHTML=`
+<img src="${file.download_url}">
+<div class="hero-overlay"><h1>BOOK US NOW!</h1></div>
+`;
+
+hero.appendChild(div);
 });
 
-/* FETCH IMAGES */
-const username = "yafeti";
-const repo = "YC-Graphics-";
-const folder = "PHOTOS";
+let idx=0;
+const slides=document.querySelectorAll(".hero-slide");
 
-async function fetchImages() {
-    try {
-        const contentsRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`);
-        const files = await contentsRes.json();
-        const images = files.filter(f => f.type==="file");
+setInterval(()=>{
+slides[idx].classList.remove("active");
+idx=(idx+1)%slides.length;
+slides[idx].classList.add("active");
+},4000);
 
-        const imagesWithDate = await Promise.all(images.map(async file=>{
-            const commitsRes = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?path=${folder}/${file.name}&per_page=1`);
-            const commits = await commitsRes.json();
-            const lastDate = commits[0]?.commit?.committer?.date || "1970-01-01T00:00:00Z";
-            return {...file, lastDate};
-        }));
-
-        imagesWithDate.sort((a,b)=>new Date(b.lastDate)-new Date(a.lastDate));
-
-        const heroSlider = document.getElementById("hero-slider");
-
-        imagesWithDate.slice(0,3).forEach((file,index)=>{
-            const heroDiv=document.createElement("div");
-            heroDiv.className="hero-slide";
-            if(index===0) heroDiv.classList.add("active");
-
-            heroDiv.innerHTML = `
-                <img src="${file.download_url}">
-                <div class="hero-overlay">
-                    <h1>BOOK US NOW!</h1>
-                </div>
-            `;
-
-            heroSlider.appendChild(heroDiv);
-        });
-
-        let heroIndex=0;
-        const heroSlides=document.querySelectorAll('.hero-slide');
-
-        setInterval(()=>{
-            heroSlides[heroIndex].classList.remove('active');
-            heroIndex=(heroIndex+1)%heroSlides.length;
-            heroSlides[heroIndex].classList.add('active');
-        },4000);
-
-    } catch(err){
-        console.error("Error fetching images:",err);
-    }
+}catch(err){
+console.log(err);
+}
 }
 fetchImages();
 
-/* AUTO SCROLL */
-const sliderTrack=document.getElementById('slider-track');
-const slider=document.getElementById('slider');
-
-sliderTrack.innerHTML+=sliderTrack.innerHTML;
-
-let x=0;
-let speed=1;
-
-function autoScroll(){
-    x+=speed;
-    if(x>=sliderTrack.scrollWidth/2){x=0;}
-    slider.scrollLeft=x;
-    requestAnimationFrame(autoScroll);
-}
-autoScroll();
 </script>
 
 </body>
