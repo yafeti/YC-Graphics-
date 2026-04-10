@@ -8,51 +8,189 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:Arial, Helvetica, sans-serif;background:#f7f7f7;color:#333;line-height:1.6;}
-.header{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#ff9800,#ff5722);padding:15px 20px;flex-wrap:wrap;}
+
+/* LOADER */
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+color:#ff9800;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+#loading-text{
+font-size:40px;
+letter-spacing:5px;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:linear-gradient(135deg,#ff9800,#ff5722);
+padding:15px 20px;
+flex-wrap:wrap;
+}
 .header img{width:60px;}
-.header a{color:white;text-decoration:none;margin-left:15px;font-weight:bold;}
-.header a:hover{text-decoration:underline;}
+
+.nav-links{display:flex;}
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+}
+.nav-links a:hover{text-decoration:underline;}
+
+.menu-toggle{
+display:none;
+font-size:28px;
+color:white;
+cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+.header{justify-content:space-between;}
+.menu-toggle{display:block;}
+
+.nav-links{
+display:none;
+flex-direction:column;
+width:100%;
+background:#ff5722;
+text-align:center;
+margin-top:10px;
+}
+
+.nav-links a{
+padding:12px;
+margin:0;
+display:block;
+}
+
+.nav-links.active{display:flex;}
+
+.hero-overlay h1{font-size:26px;}
+h1{font-size:24px;}
+h2{font-size:20px;}
+.service-slide{width:200px;}
+}
+
+/* HERO */
 .hero-slider{position:relative;width:100%;height:420px;overflow:hidden;}
 .hero-slide{position:absolute;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease-in-out;}
 .hero-slide.active{opacity:1;}
-.hero-slide img{width:100%;height:100%;object-fit:cover;border-radius:0;}
-.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
-.hero-overlay h1{font-size:48px;padding:15px 35px;border-radius:10px;background:rgba(0,0,0,0.4);}
+.hero-slide img{width:100%;height:100%;object-fit:cover;}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+.hero-overlay h1{
+font-size:48px;
+padding:15px 35px;
+border-radius:10px;
+background:rgba(0,0,0,0.4);
+}
+
+/* TEXT */
 h1,h2{text-align:center;margin:20px 0 10px;}
 p{text-align:center;margin-bottom:10px;}
 hr{width:80%;margin:20px auto;}
-.Works{display:grid;gap:15px;max-width:1100px;margin:20px auto;padding:0 15px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-img{width:100%;height:auto;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:transform 0.3s ease;cursor:pointer;}
-img:hover{transform:scale(1.05);}
+
+/* CATEGORY SECTION */
+.categories{
+background:linear-gradient(135deg,#ff9800,#ff5722);
+color:white;
+padding:30px 15px;
+margin:30px 0;
+}
+
+.categories ul{
+list-style:none;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.categories li a{
+background:rgba(0,0,0,0.2);
+padding:12px 20px;
+border-radius:25px;
+font-weight:bold;
+
+/* REMOVE LINK STYLE */
+color:white;
+text-decoration:none;
+display:inline-block;
+}
+
+.categories li a:hover{
+background:rgba(0,0,0,0.35); /* subtle hover only */
+}
+
+/* SERVICES */
 .slider-container{overflow-x:hidden;max-width:1100px;margin:30px auto;padding:0 10px;}
 .slider-track{display:flex;gap:15px;}
 .service-slide{flex:0 0 auto;width:250px;text-align:center;}
 .service-slide img{border-radius:8px;}
-.footer{background:#222;color:white;text-align:center;padding:25px 10px;margin-top:40px;}
-.footer a{color:#ff9800;text-decoration:none;margin:10px;display:inline-block;font-weight:bold;}
+
+img{
+width:100%;
+height:auto;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+.footer{
+background:#222;
+color:white;
+text-align:center;
+padding:25px 10px;
+margin-top:40px;
+}
+.footer a{
+color:#ff9800;
+text-decoration:none;
+margin:10px;
+display:inline-block;
+font-weight:bold;
+}
 .footer a:hover{text-decoration:underline;}
 .footer p{margin-top:15px;font-size:14px;}
-.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;}
-.lightbox img{max-width:90%;max-height:80%;border-radius:8px;}
-.close-lightbox{position:absolute;top:20px;right:35px;color:white;font-size:40px;font-weight:bold;cursor:pointer;}
-.close-lightbox:hover{color:#ccc;}
-@media (max-width:600px){
-    .header{justify-content:center;text-align:center;}
-    .header a{margin:10px;}
-    .hero-overlay h1{font-size:26px;}
-    h1{font-size:24px;}
-    h2{font-size:20px;}
-    .service-slide{width:200px;}
-}
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+    <h1 id="loading-text"></h1>
+</div>
+
+<!-- HEADER -->
 <div class="header">
     <img src="PHOTOS/yc.jpg" alt="YC Logo">
-    <div>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <div class="nav-links" id="nav-links">
         <a href="index.html">Home</a>
+        <a href="Projects.html">Projects</a>
         <a href="Services.html">Services</a>
         <a href="Contact.html">Contact</a>
     </div>
@@ -66,8 +204,17 @@ img:hover{transform:scale(1.05);}
 <h2>Recent Works</h2>
 <div class="hero-slider" id="hero-slider"></div>
 
-<h2>My Works</h2>
-<div class="Works" id="works-gallery"></div>
+<!-- UPDATED LINKS SECTION -->
+<div class="categories">
+    <h2>What We Design</h2>
+    <ul>
+        <li><a href="#">Event Posters</a></li>
+        <li><a href="">Song Artworks</a></li>
+        <li><a href="#">Logo Designing</a></li>
+        <li><a href="#">Business Cards</a></li>
+        <li><a href="#">Website Development</a></li>
+    </ul>
+</div>
 
 <h2>Services and Pricing</h2>
 <div class="slider-container" id="slider">
@@ -98,24 +245,44 @@ img:hover{transform:scale(1.05);}
     <p>&copy; YC GRAPHICS 2026. All rights reserved.</p>
 </div>
 
-<div class="lightbox" id="lightbox">
-    <span class="close-lightbox" id="close-lightbox">&times;</span>
-    <img id="lightbox-img">
-</div>
-
 <script>
-const username = "yafeti";       // GitHub username
-const repo = "YC-Graphics-";     // Repo name
-const folder = "PHOTOS";         // Folder name
+/* LOADING */
+const text = "YC GRAPHICS";
+const loadingText = document.getElementById("loading-text");
+let index = 0;
 
-// Fetch photos from GitHub
+function typeEffect(){
+    if(index < text.length){
+        loadingText.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 120);
+    } else {
+        setTimeout(()=>{
+            document.getElementById("loader").style.display = "none";
+        }, 800);
+    }
+}
+window.onload = typeEffect;
+
+/* MENU */
+const toggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+/* FETCH IMAGES */
+const username = "yafeti";
+const repo = "YC-Graphics-";
+const folder = "PHOTOS";
+
 async function fetchImages() {
     try {
         const contentsRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`);
         const files = await contentsRes.json();
         const images = files.filter(f => f.type==="file");
 
-        // Fetch commit dates for each image
         const imagesWithDate = await Promise.all(images.map(async file=>{
             const commitsRes = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?path=${folder}/${file.name}&per_page=1`);
             const commits = await commitsRes.json();
@@ -123,65 +290,56 @@ async function fetchImages() {
             return {...file, lastDate};
         }));
 
-        // Sort by commit date descending
         imagesWithDate.sort((a,b)=>new Date(b.lastDate)-new Date(a.lastDate));
 
-        // Populate hero slider (top 3)
         const heroSlider = document.getElementById("hero-slider");
-        const worksGallery = document.getElementById("works-gallery");
-        imagesWithDate.forEach((file,index)=>{
-            // My Works gallery
-            const linkEl = document.createElement("a");
-            linkEl.href=file.download_url;
-            linkEl.target="_blank";
-            const imgEl=document.createElement("img");
-            imgEl.src=file.download_url;
-            imgEl.alt=file.name;
-            imgEl.onclick = ()=>{
-                document.getElementById("lightbox").style.display="flex";
-                document.getElementById("lightbox-img").src=file.download_url;
-            };
-            linkEl.appendChild(imgEl);
-            worksGallery.appendChild(linkEl);
 
-            // Hero slider - top 3
-            if(index<3){
-                const heroDiv=document.createElement("div");
-                heroDiv.className="hero-slide";
-                if(index===0) heroDiv.classList.add("active");
-                heroDiv.innerHTML = `<img src="${file.download_url}">
-                                     <div class="hero-overlay"><h1>BOOK US NOW!</h1></div>`;
-                heroSlider.appendChild(heroDiv);
-            }
+        imagesWithDate.slice(0,3).forEach((file,index)=>{
+            const heroDiv=document.createElement("div");
+            heroDiv.className="hero-slide";
+            if(index===0) heroDiv.classList.add("active");
+
+            heroDiv.innerHTML = `
+                <img src="${file.download_url}">
+                <div class="hero-overlay">
+                    <h1>BOOK US NOW!</h1>
+                </div>
+            `;
+
+            heroSlider.appendChild(heroDiv);
         });
 
-        // Hero slider functionality
         let heroIndex=0;
         const heroSlides=document.querySelectorAll('.hero-slide');
+
         setInterval(()=>{
             heroSlides[heroIndex].classList.remove('active');
             heroIndex=(heroIndex+1)%heroSlides.length;
             heroSlides[heroIndex].classList.add('active');
         },4000);
 
-    } catch(err){console.error("Error fetching images:",err);}
+    } catch(err){
+        console.error("Error fetching images:",err);
+    }
 }
 fetchImages();
 
-// Services slider auto scroll
+/* AUTO SCROLL */
 const sliderTrack=document.getElementById('slider-track');
 const slider=document.getElementById('slider');
+
 sliderTrack.innerHTML+=sliderTrack.innerHTML;
+
 let x=0;
 let speed=1;
-function autoScroll(){x+=speed;if(x>=sliderTrack.scrollWidth/2){x=0;}slider.scrollLeft=x;requestAnimationFrame(autoScroll);}
-autoScroll();
 
-// Lightbox
-const lightbox=document.getElementById("lightbox");
-const closeLightbox=document.getElementById("close-lightbox");
-closeLightbox.onclick = ()=>lightbox.style.display="none";
-lightbox.onclick=e=>{if(e.target===lightbox) lightbox.style.display="none";}
+function autoScroll(){
+    x+=speed;
+    if(x>=sliderTrack.scrollWidth/2){x=0;}
+    slider.scrollLeft=x;
+    requestAnimationFrame(autoScroll);
+}
+autoScroll();
 </script>
 
 </body>
