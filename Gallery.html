@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YC GRAPHICS - Gallery</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f7f7f7;
+color:#333;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+#loading-text{
+color:#ff9800;
+font-size:40px;
+letter-spacing:5px;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:linear-gradient(135deg,#ff9800,#ff5722);
+padding:15px 20px;
+flex-wrap:wrap;
+}
+.header img{width:60px;}
+
+.nav-links{display:flex;}
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+}
+
+.menu-toggle{
+display:none;
+font-size:28px;
+color:white;
+cursor:pointer;
+}
+
+/* BACK BUTTON */
+.back-btn{
+text-align:center;
+margin:15px;
+}
+.back-btn a{
+background:#ff5722;
+color:white;
+padding:10px 15px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* TITLE */
+h1{
+text-align:center;
+margin:10px 0 20px;
+}
+
+/* GALLERY GRID */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:20px;
+max-width:1100px;
+margin:auto;
+}
+
+.gallery img{
+width:100%;
+border-radius:8px;
+cursor:pointer;
+opacity:0;
+transform:scale(0.9);
+animation:fadeIn 0.5s forwards;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+@keyframes fadeIn{
+to{opacity:1;transform:scale(1);}
+}
+
+/* FOOTER */
+.footer{
+background:#222;
+color:white;
+text-align:center;
+padding:25px 10px;
+margin-top:40px;
+}
+.footer a{
+color:#ff9800;
+text-decoration:none;
+margin:10px;
+display:inline-block;
+font-weight:bold;
+}
+
+/* LIGHTBOX */
+#lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:99999;
+}
+
+#lightbox img{
+max-width:90%;
+max-height:80%;
+border-radius:10px;
+}
+
+.controls{
+margin-top:15px;
+display:flex;
+gap:20px;
+}
+
+.controls button{
+padding:10px 15px;
+border:none;
+background:#ff9800;
+color:white;
+font-size:18px;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.menu-toggle{display:block;}
+.nav-links{
+display:none;
+flex-direction:column;
+width:100%;
+background:#ff5722;
+text-align:center;
+}
+.nav-links.active{display:flex;}
+.nav-links a{padding:12px;margin:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+<h1 id="loading-text"></h1>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+<img src="PHOTOS/yc.jpg">
+
+<div class="menu-toggle" id="menu-toggle">☰</div>
+
+<div class="nav-links" id="nav-links">
+<a href="index.html">Home</a>
+<a href="Projects.html">Projects</a>
+<a href="Services.html">Services</a>
+<a href="Contact.html">Contact</a>
+</div>
+</div>
+
+<div class="back-btn">
+<a href="index.html">← Back to Home</a>
+</div>
+
+<h1 id="title">Gallery</h1>
+
+<div class="gallery" id="gallery"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+<img id="lightbox-img">
+<div class="controls">
+<button onclick="prevImg()">Prev</button>
+<button onclick="closeLightbox()">Close</button>
+<button onclick="nextImg()">Next</button>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<h5>CONTACT US</h5>
+<hr>
+<a href="https://wa.me/265890277409">WhatsApp</a>
+<a href="mailto:yafetichidzaye72@gmail.com">Email</a>
+<a href="https://www.facebook.com/profile.php?id=100095165181867">Facebook</a>
+<p>&copy; YC GRAPHICS 2026</p>
+</div>
+
+<script>
+
+/* LOADER */
+const text="YC GRAPHICS";
+let i=0;
+const loaderText=document.getElementById("loading-text");
+
+function type(){
+if(i<text.length){
+loaderText.innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,120);
+}else{
+setTimeout(()=>document.getElementById("loader").style.display="none",800);
+}
+}
+window.onload=type;
+
+/* MENU */
+const toggle=document.getElementById("menu-toggle");
+const nav=document.getElementById("nav-links");
+toggle.onclick=()=>nav.classList.toggle("active");
+
+/* GET FOLDER */
+const params=new URLSearchParams(window.location.search);
+const folder=params.get("folder") || "Events";
+document.getElementById("title").innerText=folder;
+
+/* GITHUB */
+const username="yafeti";
+const repo="YC-Graphics-";
+const gallery=document.getElementById("gallery");
+
+let imagesArray=[];
+let currentIndex=0;
+
+async function loadImages(){
+try{
+const res=await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${encodeURIComponent(folder)}`);
+const data=await res.json();
+
+imagesArray = data.filter(f=>f.type==="file");
+
+imagesArray.forEach((img,index)=>{
+const el=document.createElement("img");
+el.src=img.download_url;
+
+el.onclick=()=>openLightbox(index);
+
+gallery.appendChild(el);
+});
+
+}catch(err){
+gallery.innerHTML="<p style='text-align:center'>No images found</p>";
+}
+}
+
+loadImages();
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+function openLightbox(index){
+currentIndex=index;
+lightbox.style.display="flex";
+lightboxImg.src=imagesArray[currentIndex].download_url;
+}
+
+function closeLightbox(){
+lightbox.style.display="none";
+}
+
+function nextImg(){
+currentIndex=(currentIndex+1)%imagesArray.length;
+lightboxImg.src=imagesArray[currentIndex].download_url;
+}
+
+function prevImg(){
+currentIndex=(currentIndex-1+imagesArray.length)%imagesArray.length;
+lightboxImg.src=imagesArray[currentIndex].download_url;
+}
+
+</script>
+
+</body>
+</html>
