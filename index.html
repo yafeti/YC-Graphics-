@@ -50,7 +50,6 @@ transition:0.3s;
 background:rgba(0,0,0,0.2);
 }
 
-/* MOBILE MENU */
 .menu-toggle{
 display:none;
 font-size:28px;
@@ -58,6 +57,7 @@ color:white;
 cursor:pointer;
 }
 
+/* MOBILE */
 @media (max-width:600px){
 .menu-toggle{display:block;}
 
@@ -71,8 +71,8 @@ margin-top:10px;
 }
 
 .nav-links a{
-margin:0;
 padding:12px;
+margin:0;
 display:block;
 }
 
@@ -214,11 +214,11 @@ font-weight:bold;
 <div class="categories">
 <h2>What We Design</h2>
 <ul>
-<li><a href="Gallery.html?folder=Events">Event Posters</a></li>
-<li><a href="Gallery.html?folder=Song artworks">Song Artworks</a></li>
-<li><a href="Gallery.html?folder=Logos">Logo Designing</a></li>
-<li><a href="Gallery.html?folder=Business">Business Cards</a></li>
-<li><a href="Gallery.html?folder=Websites">Website Development</a></li>
+<li><a href="gallery.html?folder=Events">Event Posters</a></li>
+<li><a href="gallery.html?folder=Song%20artworks">Song Artworks</a></li>
+<li><a href="gallery.html?folder=Logos">Logo Designing</a></li>
+<li><a href="gallery.html?folder=Business">Business Cards</a></li>
+<li><a href="gallery.html?folder=Websites">Website Development</a></li>
 </ul>
 </div>
 
@@ -254,66 +254,117 @@ font-weight:bold;
 <script>
 
 /* LOADER */
-const text="YC GRAPHICS";
-let i=0;
-const loaderText=document.getElementById("loading-text");
+const text = "YC GRAPHICS";
+const loadingText = document.getElementById("loading-text");
+let i = 0;
 
-function type(){
-if(i<text.length){
-loaderText.innerHTML+=text.charAt(i);
+function typeEffect(){
+if(i < text.length){
+loadingText.innerHTML += text.charAt(i);
 i++;
-setTimeout(type,120);
+setTimeout(typeEffect, 120);
 }else{
-setTimeout(()=>document.getElementById("loader").style.display="none",800);
+setTimeout(()=>{
+document.getElementById("loader").style.display = "none";
+}, 800);
 }
 }
-window.onload=type;
+window.onload = typeEffect;
 
 /* MENU */
-const toggle=document.getElementById("menu-toggle");
-const navLinks=document.getElementById("nav-links");
-toggle.onclick=()=>navLinks.classList.toggle("active");
+const toggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
 
-/* HERO SLIDER */
-const username="yafeti";
-const repo="YC-Graphics-";
-const folder="PHOTOS";
+toggle.addEventListener("click", () => {
+navLinks.classList.toggle("active");
+});
 
-async function fetchImages(){
+/* 🔥 FIXED: RECENT WORKS FROM ALL FOLDERS */
+const username = "yafeti";
+const repo = "YC-Graphics-";
+
+const folders = [
+"Events",
+"Song artworks",
+"Logos",
+"Business"
+];
+
+async function fetchRecentWorks(){
+
 try{
-const res=await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folder}`);
-const files=await res.json();
-const images=files.filter(f=>f.type==="file");
 
-const hero=document.getElementById("hero-slider");
+let allImages = [];
 
-images.slice(0,3).forEach((file,index)=>{
-const div=document.createElement("div");
-div.className="hero-slide";
-if(index===0) div.classList.add("active");
+for(let folder of folders){
 
-div.innerHTML=`
+const res = await fetch(
+`https://api.github.com/repos/${username}/${repo}/contents/${encodeURIComponent(folder)}`
+);
+
+const files = await res.json();
+
+if(!Array.isArray(files)) continue;
+
+const images = files.filter(f => f.type === "file");
+
+const withDate = await Promise.all(images.map(async file => {
+
+const commitRes = await fetch(
+`https://api.github.com/repos/${username}/${repo}/commits?path=${folder}/${file.name}&per_page=1`
+);
+
+const commits = await commitRes.json();
+
+return {
+...file,
+lastDate: commits[0]?.commit?.committer?.date || "1970-01-01T00:00:00Z"
+};
+
+}));
+
+allImages = allImages.concat(withDate);
+
+}
+
+allImages.sort((a,b)=>
+new Date(b.lastDate) - new Date(a.lastDate)
+);
+
+const hero = document.getElementById("hero-slider");
+hero.innerHTML = "";
+
+allImages.slice(0,3).forEach((file,index)=>{
+
+const div = document.createElement("div");
+div.className = "hero-slide";
+if(index === 0) div.classList.add("active");
+
+div.innerHTML = `
 <img src="${file.download_url}">
 <div class="hero-overlay"><h1>BOOK US NOW!</h1></div>
 `;
 
 hero.appendChild(div);
+
 });
 
-let idx=0;
-const slides=document.querySelectorAll(".hero-slide");
+let idx = 0;
+const slides = document.querySelectorAll(".hero-slide");
 
-setInterval(()=>{
+setInterval(() => {
 slides[idx].classList.remove("active");
-idx=(idx+1)%slides.length;
+idx = (idx + 1) % slides.length;
 slides[idx].classList.add("active");
-},4000);
+}, 4000);
 
 }catch(err){
-console.log(err);
+console.error("Error loading recent works:", err);
 }
+
 }
-fetchImages();
+
+fetchRecentWorks();
 
 </script>
 
